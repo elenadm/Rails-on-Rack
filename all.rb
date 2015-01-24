@@ -4,5 +4,5 @@ def all? array
   for i in 0...l
     break result = false if yield(array[i]) == false
   end
-  puts result
+  result
 end
