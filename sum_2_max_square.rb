@@ -30,3 +30,10 @@ def sum_2_max_square_v2(a, b, c)
   end
   array[0].to_i**2 + array[1].to_i**2
 end
+
+def sum_2_max_square_v3(a, b, c)
+  array = Array.new
+  array << a << b << c
+  a = array.sort
+  a[-1] * a[-1] + a[-2] * a[-2]
+end
