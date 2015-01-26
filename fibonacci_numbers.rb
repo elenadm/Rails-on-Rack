@@ -10,7 +10,3 @@ def fibonacci_numbers_v1(n)
   end
   f1
 end
-
-def fibonacci_numbers_v2(n)
-  (((1 + Math.sqrt(5))/2)**n / Math.sqrt(5)).round
-end
