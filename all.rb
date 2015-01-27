@@ -1,8 +1,7 @@
 def all? array
-  l = array.length
   result = true
-  for i in 0...l
-    break result = false if yield(array[i]) == false
+  for e in array
+    break result = false if yield(e) == false
   end
   result
 end

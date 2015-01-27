@@ -1,8 +1,7 @@
 def select array
-  l = array.length
   result = Array.new
-  for i in 0...l
-    result << array[i] if yield(array[i]) == true
+  for e in array
+    result << e if yield(e)
   end
   result
 end
