@@ -14,7 +14,7 @@ end
 def fibonacci_numbers_v2(n)
   return 0 if n == 0
   require 'matrix'
-  a = Matrix[[1,1],[1,0]]
+  a = Matrix[[1, 1], [1, 0]]
   k = n/2
   res = a**k * a**k
   n % 2 == 0 ? res : res *= a
