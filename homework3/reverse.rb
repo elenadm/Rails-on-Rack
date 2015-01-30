@@ -1,9 +1,6 @@
 def reverse array
-  i = (array.length)-1
+  i = array.length-1
   result = Array.new
-  while i>=0
-    result << array[i]
-    i-=1
-  end
+  i.downto(0) { |i| result << array[i] }
   result
 end
