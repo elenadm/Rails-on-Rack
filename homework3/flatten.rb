@@ -3,7 +3,7 @@ def flatten array
   while !array.empty?
     a = array.pop
     if a.is_a?(Array)
-      array.push(*a)
+      array += a
     else
       result << a
     end
