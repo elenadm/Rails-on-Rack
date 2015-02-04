@@ -10,3 +10,14 @@ def flatten array
   end
   result.reverse
 end
+
+def flatten_v2(array, result = [])
+  array.each do |el|
+    if el.is_a?(Array)
+      flatten_v2 el, result
+    else
+      result << el
+    end
+  end
+  result
+end
