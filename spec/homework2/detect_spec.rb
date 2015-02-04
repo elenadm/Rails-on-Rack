@@ -13,4 +13,8 @@ describe 'detect' do
   it 'returns nil with none suitable' do
     expect(detect (1..4) { |e| e % 5 == 0 }).to be_nil
   end
+
+  it 'returns nil for empty array' do
+    expect(detect ([]) { |e| e % 5 == 0 }).to be_nil
+  end
 end

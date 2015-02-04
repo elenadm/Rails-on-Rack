@@ -13,4 +13,8 @@ describe 'count' do
   it 'returns 0 with none suitable' do
     expect(count ['any', 'all', 'reduce'] { |e| e.length > 8 }).to eq(0)
   end
+
+  it 'returns 0 for empty array' do
+    expect(count [] { |e| e.length > 8 }).to eq(0)
+  end
 end

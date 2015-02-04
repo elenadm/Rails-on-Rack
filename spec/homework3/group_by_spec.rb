@@ -11,4 +11,8 @@ describe 'group_by' do
                      'Mountain BlueBird', 'Mountain-Hawk Eagle']) { |s| s[0] }).to eq({"G" => ["Golden Eagle", "Gyrfalcon"], "A" => ["American Robin"],
                                                                                        "M" => ["Mountain BlueBird", "Mountain-Hawk Eagle"]})
   end
+
+  it 'when grouped by empty array' do
+    expect(group_by([]) { |i| i % 3 }).to eq({})
+  end
 end

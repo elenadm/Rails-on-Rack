@@ -13,4 +13,16 @@ describe 'local_max' do
   it 'returns empty array with none suitable' do
     expect(local_max [1, 2, 3, 4, 5]).to eq([])
   end
+
+  it 'returns empty array with asc elements' do
+    expect(local_max [1, 2, 3, 4, 5]).to eq([])
+  end
+
+  it 'returns empty array with desc elements' do
+    expect(local_max [5, 4, 3, 2, 1]).to eq([])
+  end
+
+  it 'returns empty array with same elements' do
+    expect(local_max [1, 1, 1, 1, 1]).to eq([])
+  end
 end

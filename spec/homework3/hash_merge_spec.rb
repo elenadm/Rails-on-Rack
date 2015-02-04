@@ -7,10 +7,14 @@ describe 'hash_merge' do
   end
 
   it 'when a duplicate key one' do
-    expect(hash_merge({"a" => 70, "c" => 70}, {"b" => 200, "a" => 50})).to eq({"a" => 50, "c" => 70, "b" => 200})
+    expect(hash_merge({'a' => 70, 'c' => 70}, {'b' => 200, 'a' => 50})).to eq({'a' => 50, 'c' => 70, 'b' => 200})
   end
 
   it 'when no duplicate key' do
-    expect(hash_merge({"a" => 100, "c" => 70}, {"b" => 200, "d" => 50})).to eq({"a" => 100, "c" => 70, "b" => 200, "d" => 50})
+    expect(hash_merge({'a' => 100, 'c' => 70}, {'b' => 200, 'd' => 50})).to eq({'a' => 100, 'c' => 70, 'b' => 200, 'd' => 50})
+  end
+
+  it 'when empty hashes' do
+    expect(hash_merge({}, {})).to eq({})
   end
 end

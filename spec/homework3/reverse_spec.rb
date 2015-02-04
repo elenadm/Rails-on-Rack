@@ -9,4 +9,8 @@ describe 'reverse' do
   it 'returns a new array with one element containing self elements in reverse order' do
     expect(reverse ['a']).to eq(['a'])
   end
+
+  it 'returns empty array' do
+    expect(reverse []).to eq([])
+  end
 end

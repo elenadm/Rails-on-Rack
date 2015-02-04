@@ -9,4 +9,8 @@ describe 'map' do
   it 'returns sum of string arguments' do
     expect(map(['a', 'b', 'c', 'd']) { |x| x + '!' }).to eq(['a!', 'b!', 'c!', 'd!'])
   end
+
+  it 'returns empty array' do
+    expect(map([]) { |x| x + '!' }).to eq([])
+  end
 end

@@ -13,4 +13,8 @@ describe 'select' do
   it 'returns empty array with none suitable' do
     expect(select (1..4) { |e| e % 5 == 0 }).to eq([])
   end
+
+  it 'returns empty array' do
+    expect(select ([]) { |e| e % 5 == 0 }).to eq([])
+  end
 end

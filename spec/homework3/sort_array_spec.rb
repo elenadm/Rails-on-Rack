@@ -13,4 +13,8 @@ describe 'sort_array' do
   it 'returns a new array created by sort by length' do
     expect(sort_by_length ["length", "map", "git", "count"]).to eq(["git", "map", "count", "length"])
   end
+
+  it 'returns a empty array' do
+    expect(sort_by_length []).to eq([])
+  end
 end
