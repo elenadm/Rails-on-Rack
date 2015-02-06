@@ -1,11 +1,4 @@
-module Svg
-  Header = '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="300">'
-  Footer = '</svg>'
-end
 class Line
-  include Svg
-
   def initialize (x1, y1, x2, y2, stroke_width = 1)
     @x1 = x1
     @y1 = y1
@@ -15,16 +8,12 @@ class Line
   end
 
   def draw
-    drawed_content = '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
+    '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
         '" y2="' + @y2.to_s + '" stroke= "black"' + ' stroke-width="' + @stroke_width.to_s + '"/>'
-    content = Header + drawed_content + Footer
-    File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
 end
 
 class Rect
-  include Svg
-
   def initialize (x, y, width, height)
     @x = x
     @y = y
@@ -33,16 +22,12 @@ class Rect
   end
 
   def draw
-    drawed_content = '<rect x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
+    '<rect x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
         '" height="' + @height.to_s + '" stroke= "black"' + '/>'
-    content = Header + drawed_content + Footer
-    File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
 end
 
 class Circle
-  include Svg
-
   def initialize (cx, cy, r, fill = 'none')
     @cx = cx
     @cy = cy
@@ -51,16 +36,12 @@ class Circle
   end
 
   def draw
-    drawed_content = '<circle cx="' + @cx.to_s + '" cy="' + @cy.to_s + '" r="' + @r.to_s + '" stroke= "black"' +
+    '<circle cx="' + @cx.to_s + '" cy="' + @cy.to_s + '" r="' + @r.to_s + '" stroke= "black"' +
         ' fill="' + @fill.to_s + '"/>'
-    content = Header + drawed_content + Footer
-    File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
 end
 
 class Arrow
-  include Svg
-
   def initialize (x1, y1, x2, y2)
     @x1 = x1
     @y1 = y1
@@ -69,10 +50,8 @@ class Arrow
   end
 
   def draw
-    drawed_content = '<arrow x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
+    '<arrow x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
         '" y2="' + @y2.to_s + '" stroke= "black"' + '/>'
-    content = Header + drawed_content + Footer
-    File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
 end
 
@@ -124,5 +103,12 @@ elements = [
     Line.new(50, 220, 75, 230),
     Line.new(175, 220, 175, 250, 3),
     Arrow.new(50, 250, 75, 240)]
-element = elements[rand(elements.length)]
-element.draw
+
+drawed_content = ''
+elements.each { |e| drawed_content += e.draw }
+
+File.open("geometric_figure.svg", "w+") do |f|
+  str ='<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="300">' + drawed_content.to_s + '</svg>'
+  f.write(str)
+end
