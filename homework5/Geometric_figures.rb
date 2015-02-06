@@ -16,7 +16,7 @@ class Line
 
   def draw
     drawed_content = '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
-        '" y2="' + @y2.to_s + '" stroke-width="' + @stroke_width.to_s + '"/>'
+        '" y2="' + @y2.to_s + '" stroke= "black"' + ' stroke-width="' + @stroke_width.to_s + '"/>'
     content = Header + drawed_content + Footer
     File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
@@ -33,8 +33,8 @@ class Rect
   end
 
   def draw
-    drawed_content = '<line x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
-        '" height="' + @height.to_s + '"/>'
+    drawed_content = '<rect x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
+        '" height="' + @height.to_s + '" stroke= "black"' + '/>'
     content = Header + drawed_content + Footer
     File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
@@ -51,8 +51,8 @@ class Circle
   end
 
   def draw
-    drawed_content = '<line cx="' + @cx.to_s + '" cy="' + @cy.to_s + '" r="' + @r.to_s +
-        '" fill="' + @fill.to_s + '"/>'
+    drawed_content = '<circle cx="' + @cx.to_s + '" cy="' + @cy.to_s + '" r="' + @r.to_s + '" stroke= "black"' +
+        ' fill="' + @fill.to_s + '"/>'
     content = Header + drawed_content + Footer
     File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
@@ -69,8 +69,8 @@ class Arrow
   end
 
   def draw
-    drawed_content = '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
-        '" y2="' + @y2.to_s + '"/>'
+    drawed_content = '<arrow x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
+        '" y2="' + @y2.to_s + '" stroke= "black"' + '/>'
     content = Header + drawed_content + Footer
     File.open('geometric_figure.svg', 'wb') { |file| file.write(content) }
   end
