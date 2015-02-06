@@ -50,7 +50,7 @@ class Arrow
   end
 
   def draw
-    '<arrow x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
+    '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
         '" y2="' + @y2.to_s + '" stroke= "black"' + '/>'
   end
 end
