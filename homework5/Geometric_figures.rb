@@ -1,10 +1,6 @@
 class Line
   def initialize (x1, y1, x2, y2, stroke_width = 1)
-    @x1 = x1
-    @y1 = y1
-    @x2 = x2
-    @y2 = y2
-    @stroke_width = stroke_width
+    @x1, @y1, @x2, @y2, @stroke_width = x1, y1, x2, y2, stroke_width
   end
 
   def draw
@@ -14,25 +10,19 @@ class Line
 end
 
 class Rect
-  def initialize (x, y, width, height)
-    @x = x
-    @y = y
-    @width = width
-    @height = height
+  def initialize (x, y, width, height, fill = 'none')
+    @x, @y, @width, @height, @fill = x, y, width, height, fill
   end
 
   def draw
     '<rect x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
-        '" height="' + @height.to_s + '" stroke= "black"' + '/>'
+        '" height="' + @height.to_s + '" stroke= "black"' + ' fill="' + @fill.to_s + '"/>'
   end
 end
 
 class Circle
   def initialize (cx, cy, r, fill = 'none')
-    @cx = cx
-    @cy = cy
-    @r = r
-    @fill = fill
+    @cx, @cy, @r, @fill = cx, cy, r, fill
   end
 
   def draw
@@ -43,10 +33,7 @@ end
 
 class Arrow
   def initialize (x1, y1, x2, y2)
-    @x1 = x1
-    @y1 = y1
-    @x2 = x2
-    @y2 = y2
+    @x1, @y1, @x2, @y2 = x1, y1, x2, y2
   end
 
   def draw
@@ -107,7 +94,7 @@ elements = [
 drawed_content = ''
 elements.each { |e| drawed_content += e.draw }
 
-File.open("geometric_figure.svg", "w+") do |f|
+File.open("geometric_figure.svg", "wb") do |f|
   str ='<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="300" height="300">' + drawed_content.to_s + '</svg>'
   f.write(str)
