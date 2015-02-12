@@ -1,44 +1,95 @@
+class SVG
+  def self.method_missing(name, *args, &block)
+    attrs_collector = Attr.new
+    block_context = eval 'self', block.binding
+    block_context.instance_variables.each do |var_name|
+      attrs_collector.instance_variable_set(var_name, block_context.instance_variable_get(var_name))
+    end
+    attrs_collector.instance_eval &block
+    "<#{name} #{attrs_collector.hash_to_string}/>"
+  end
+end
+
+class Attr
+  attr_reader :attrs
+
+  def initialize (attrs = {})
+    @attrs = attrs
+  end
+
+  def method_missing(name, attr)
+    @attrs[name] = attr
+  end
+
+  def hash_to_string
+    attrs.merge!("stroke" => "black")
+    attrs.map { |k, v| "#{k}='#{v}'" }.join(' ')
+  end
+end
+
 class Line
   def initialize (x1, y1, x2, y2, stroke_width = 1)
     @x1, @y1, @x2, @y2, @stroke_width = x1, y1, x2, y2, stroke_width
   end
 
   def draw
-    '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
-        '" y2="' + @y2.to_s + '" stroke= "black"' + ' stroke-width="' + @stroke_width.to_s + '"/>'
+    SVG.line do
+      x1 @x1
+      x2 @x2
+      y1 @y1
+      y2 @y2
+      stroke_width @stroke_width
+    end
   end
+
 end
 
 class Rect
+
   def initialize (x, y, width, height, fill = 'none')
     @x, @y, @width, @height, @fill = x, y, width, height, fill
   end
 
   def draw
-    '<rect x="' + @x.to_s + '" y="' + @y.to_s + '" width="' + @width.to_s +
-        '" height="' + @height.to_s + '" stroke= "black"' + ' fill="' + @fill.to_s + '"/>'
+    SVG.rect do
+      x @x
+      y @y
+      width @width
+      height @height
+      fill @fill
+    end
   end
 end
 
 class Circle
+
   def initialize (cx, cy, r, fill = 'none')
     @cx, @cy, @r, @fill = cx, cy, r, fill
   end
 
   def draw
-    '<circle cx="' + @cx.to_s + '" cy="' + @cy.to_s + '" r="' + @r.to_s + '" stroke= "black"' +
-        ' fill="' + @fill.to_s + '"/>'
+    SVG.circle do
+      cx @cx
+      cy @cy
+      r @r
+      fill @fill
+    end
   end
 end
 
 class Arrow
+
   def initialize (x1, y1, x2, y2)
     @x1, @y1, @x2, @y2 = x1, y1, x2, y2
   end
 
   def draw
-    '<line x1="' + @x1.to_s + '" y1="' + @y1.to_s + '" x2="' + @x2.to_s +
-        '" y2="' + @y2.to_s + '" stroke= "black"' + '/>'
+    SVG.line do
+      x1 @x1
+      x2 @x2
+      y1 @y1
+      y2 @y2
+    end
   end
 end
 
