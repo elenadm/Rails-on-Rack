@@ -89,6 +89,13 @@ class Arrow
       x2 @x2
       y1 @y1
       y2 @y2
+    end  +
+    SVG.rect do
+      x (@x2-2)
+      y (@y2-2)
+      width 2
+      height 4
+      fill "black"
     end
   end
 end
